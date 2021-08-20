@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <style>
+        .User {
+            display: block;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="users"></div>
+    <script src="./main.js"></script>
+    <script>
+        var x = new XMLHttpRequest();
+        var j;x.open('GET', 'https://jsonplaceholder.typicode.com/users');
+        var u = document.getElementById('users')
+
+
+        x.responseType = 'json';
+        x.onload = function(e) {
+            j = this.response;
+
+
+
+            for(var i=0; i < j.length; i++) {
+                console.log(j[i]);var usr = document.createElement("div"); usr.classList.add("User");
+                var n = document.createElement("div")
+                var e = document.createElement("div")
+                var pho = document.createElement("div")
+                n.innerHTML = j[i].name; e.innerHTML = j[i].email;
+                pho.innerHTML = j[i].phone;
+                usr.appendChild(n);usr.appendChild(e);usr.appendChild(pho); u.appendChild(usr)}
+        };x.send();
+    </script>
+</body>
+</html>
